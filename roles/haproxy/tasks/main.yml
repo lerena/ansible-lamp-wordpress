@@ -1,6 +1,6 @@
 ---
 - name: Ensure HAProxy is installed.
-  apt: name=haproxy state=installed
+  apt: name=haproxy state=present
 
 - name: Ensure HAProxy is enabled
   lineinfile:

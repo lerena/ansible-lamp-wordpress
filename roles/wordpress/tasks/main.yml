@@ -1,7 +1,7 @@
 ---
 
 - name: Install unzip package
-  apt: name=unzip state=installed
+  apt: name=unzip state=present
 
 - name: Check if Wordpress has been previously downloaded
   stat: path="{{ wp_download_path }}"

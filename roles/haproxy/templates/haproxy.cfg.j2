@@ -32,13 +32,12 @@ frontend {{ haproxy_frontend_name }}
 backend {{ haproxy_backend_name }}
     mode {{ haproxy_backend_mode }}
     stats enable
-    stats uri /haproxy?stats
+    stats uri {{ haproxy_stats_url }}
     stats realm Strictly\ Private
-    stats auth root:root
+    stats auth {{ haproxy_stats_user }}:{{ haproxy_stats_password }}
     balance {{ haproxy_backend_balance_method }}
-    balance roundrobin
     option httpclose
     option forwardfor
     {% for backend in haproxy_backend_servers %}
-        server {{ backend.name }} {{ backend.address }} check
+        server {{ backend.name }} {{ backend.address }} check port 80
     {% endfor %}

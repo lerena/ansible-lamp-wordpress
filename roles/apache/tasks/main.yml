@@ -5,12 +5,10 @@
     apache_packages: "{{ packages | list }}"
   when: apache_packages is not defined
 
-- include: setup.yml
-  static: no
+- include_tasks: setup.yml
 
-- include: configure.yml
-  static: no
-
+- include_tasks: configure.yml
+  
 - name: Ensure Apache has selected state and enabled on boot.
   service:
     name: apache2
